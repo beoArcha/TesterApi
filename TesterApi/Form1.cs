@@ -41,11 +41,13 @@ namespace TesterApi
             {
                 deserializeResponse(response, out userId, out token, choosenService);
                 workingPanel.Visible = true;
+                typeGroupBox.Enabled = false;
                 connectionAdress = adress + "/" + service + "?";
             }
             else
             {
                 workingPanel.Visible = false;
+                typeGroupBox.Enabled = true;
                 MessageBox.Show("Error");
             }
         }
@@ -185,7 +187,7 @@ namespace TesterApi
                 {
                     it = String.Format("{0} Thread {1} {2}", thDT, count, sucess);                    
                     timeListView.Items.Add(it);
-                    timeListView.Items[timeListView.Items.Count - 1].ForeColor = Color.Black;
+                    timeListView.Items[timeListView.Items.Count -1].ForeColor = Color.Black;
                 }
             }
         }
@@ -234,8 +236,8 @@ namespace TesterApi
                 string it = String.Format("{0} - {1} Connection number {2} is {3}, uri {4}", begDT, endDT, data, score, uri);
                 timeListView.Invoke((MethodInvoker)delegate
                 {
-                    timeListView.Items[timeListView.Items.Count - 1].ForeColor = Color.BlueViolet;
                     timeListView.Items.Add(it);
+                    timeListView.Items[timeListView.Items.Count - 1].ForeColor = Color.BlueViolet;                    
                 });
             }
         }
