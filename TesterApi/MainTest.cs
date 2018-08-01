@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using System;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Net;
@@ -210,10 +211,12 @@ namespace TesterApi
             if (comp == 0)
                 Thread.Sleep(2000);
             DateTime begDT = DateTime.Now;
+            Stopwatch elapsedTime = new Stopwatch();
             try
             {
                 string responseFromServer;
                 uri = Uri.EscapeDataString(uri);
+                elapsedTime = Stopwatch.StartNew();
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(connectionAdress + "get_orders=" + uri);
                 request.Credentials = CredentialCache.DefaultCredentials;
                 request.Headers["Cookie"] = cookie;
@@ -233,13 +236,19 @@ namespace TesterApi
             finally
             {
                 DateTime endDT = DateTime.Now;
-                string it = String.Format("{0} - {1} Connection number {2} is {3}, uri {4}", begDT, endDT, data, score, uri);
+                elapsedTime.Stop();
+                string it = String.Format("{0} - {1} Connection number {2} is {3} in time {4} ms, uri {5}", begDT, endDT, data, score, elapsedTime.ElapsedMilliseconds.ToString(), uri);
                 timeListView.Invoke((MethodInvoker)delegate
                 {
                     timeListView.Items.Add(it);
                     timeListView.Items[timeListView.Items.Count - 1].ForeColor = Color.BlueViolet;                    
                 });
             }
+        }
+
+        private void timeListView_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 

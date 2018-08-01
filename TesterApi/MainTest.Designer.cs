@@ -38,6 +38,7 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.loginButton = new System.Windows.Forms.Button();
             this.workingPanel = new System.Windows.Forms.Panel();
+            this.timeListView = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.userLabel = new System.Windows.Forms.Label();
             this.ordersNumericUpDown = new System.Windows.Forms.NumericUpDown();
@@ -49,7 +50,6 @@
             this.typeGroupBox = new System.Windows.Forms.GroupBox();
             this.spaceRadioButton = new System.Windows.Forms.RadioButton();
             this.b2bRadioButton = new System.Windows.Forms.RadioButton();
-            this.timeListView = new System.Windows.Forms.ListView();
             this.workingPanel.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersNumericUpDown)).BeginInit();
@@ -139,6 +139,16 @@
             this.workingPanel.Size = new System.Drawing.Size(531, 382);
             this.workingPanel.TabIndex = 9;
             this.workingPanel.Visible = false;
+            // 
+            // timeListView
+            // 
+            this.timeListView.Location = new System.Drawing.Point(12, 115);
+            this.timeListView.Name = "timeListView";
+            this.timeListView.Size = new System.Drawing.Size(515, 261);
+            this.timeListView.TabIndex = 1;
+            this.timeListView.UseCompatibleStateImageBehavior = false;
+            this.timeListView.View = System.Windows.Forms.View.List;
+            this.timeListView.SelectedIndexChanged += new System.EventHandler(this.timeListView_SelectedIndexChanged);
             // 
             // panel2
             // 
@@ -288,19 +298,14 @@
             this.b2bRadioButton.UseVisualStyleBackColor = true;
             this.b2bRadioButton.ClientSizeChanged += new System.EventHandler(this.typeGroupBox_RegionChanged);
             // 
-            // timeListView
-            // 
-            this.timeListView.Location = new System.Drawing.Point(12, 115);
-            this.timeListView.Name = "timeListView";
-            this.timeListView.Size = new System.Drawing.Size(515, 261);
-            this.timeListView.TabIndex = 1;
-            this.timeListView.UseCompatibleStateImageBehavior = false;
-            this.timeListView.View = System.Windows.Forms.View.List;
-            // 
             // apiTestApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
+            this.AutoScrollMinSize = new System.Drawing.Size(240, 120);
+            this.AutoSize = true;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(826, 400);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.workingPanel);
