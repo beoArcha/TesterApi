@@ -13,7 +13,7 @@ namespace TesterApi
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new apiTestApp());
+            Application.Run(new ApiTestApp());
         }
     }
 }

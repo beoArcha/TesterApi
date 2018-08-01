@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace TesterApi
 {
-    public partial class apiTestApp : Form
+    public partial class ApiTestApp : Form
     {
         private bool logged;
         private long userId;
@@ -22,7 +22,7 @@ namespace TesterApi
         private string cookie;
         private string[] listOfServices = { "b2b", "space" };
 
-        public apiTestApp()
+        public ApiTestApp()
         {
             InitializeComponent();
             b2bRadioButton.Checked = true;
@@ -89,13 +89,7 @@ namespace TesterApi
                 request = (HttpWebRequest)WebRequest.Create(adr + "/" + serv + "?login");
                 request.Credentials = CredentialCache.DefaultCredentials;
                 request.Headers["Authorization"] = auth;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                // Get the stream containing content returned by the server.
-                Stream dataStream = response.GetResponseStream();
-                // Open the stream using a StreamReader for easy access.
-                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
-                // Read the content.
-                responseFromServer = reader.ReadToEnd();
+                responseFromServer = InternetQuestion(request);
                 return true;
             }
             catch
@@ -114,13 +108,7 @@ namespace TesterApi
                 request.Credentials = CredentialCache.DefaultCredentials;
                 if (auth != "")
                     request.Headers["Authorization"] = auth;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                // Get the stream containing content returned by the server.
-                Stream dataStream = response.GetResponseStream();
-                // Open the stream using a StreamReader for easy access.
-                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
-                // Read the content.
-                string responseFromServer = reader.ReadToEnd();
+                string responseFromServer = InternetQuestion(request);
                 return true;
             }
             catch
@@ -219,14 +207,8 @@ namespace TesterApi
                 elapsedTime = Stopwatch.StartNew();
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(connectionAdress + "get_orders=" + uri);
                 request.Credentials = CredentialCache.DefaultCredentials;
-                request.Headers["Cookie"] = cookie;
-                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-                // Get the stream containing content returned by the server.
-                Stream dataStream = response.GetResponseStream();
-                // Open the stream using a StreamReader for easy access.
-                StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
-                // Read the content.
-                responseFromServer = reader.ReadToEnd();
+                request.Headers["Cookie"] = cookie;                
+                responseFromServer = InternetQuestion(request);
                 score = "sucessful";
             }
             catch
@@ -249,6 +231,16 @@ namespace TesterApi
         private void timeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+        private static string InternetQuestion(HttpWebRequest req)
+        {
+            HttpWebResponse response = (HttpWebResponse)req.GetResponse();
+            // Get the stream containing content returned by the server.
+            Stream dataStream = response.GetResponseStream();
+            // Open the stream using a StreamReader for easy access.
+            StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
+            // Read the content.
+            return reader.ReadToEnd();
         }
     }
 
@@ -273,4 +265,5 @@ namespace TesterApi
         public int Idcompany { get; set; }
         public int Idpayer { get; set; }
     }
+  
 }
