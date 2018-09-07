@@ -38,6 +38,9 @@
             this.portLabel = new System.Windows.Forms.Label();
             this.loginButton = new System.Windows.Forms.Button();
             this.workingPanel = new System.Windows.Forms.Panel();
+            this.groupBoxQuest = new System.Windows.Forms.GroupBox();
+            this.radioButtonGetOrder = new System.Windows.Forms.RadioButton();
+            this.radioButtonGetInvoice = new System.Windows.Forms.RadioButton();
             this.timeListView = new System.Windows.Forms.ListView();
             this.panel2 = new System.Windows.Forms.Panel();
             this.userLabel = new System.Windows.Forms.Label();
@@ -51,6 +54,7 @@
             this.spaceRadioButton = new System.Windows.Forms.RadioButton();
             this.b2bRadioButton = new System.Windows.Forms.RadioButton();
             this.workingPanel.SuspendLayout();
+            this.groupBoxQuest.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.getOrderNumericUpDown)).BeginInit();
@@ -130,15 +134,48 @@
             // 
             // workingPanel
             // 
+            this.workingPanel.Controls.Add(this.groupBoxQuest);
             this.workingPanel.Controls.Add(this.timeListView);
             this.workingPanel.Controls.Add(this.panel2);
-            this.workingPanel.Controls.Add(this.getOrderNumericUpDown);
-            this.workingPanel.Controls.Add(this.getOrderButton);
             this.workingPanel.Location = new System.Drawing.Point(287, 12);
             this.workingPanel.Name = "workingPanel";
             this.workingPanel.Size = new System.Drawing.Size(531, 382);
             this.workingPanel.TabIndex = 9;
             this.workingPanel.Visible = false;
+            // 
+            // groupBoxQuest
+            // 
+            this.groupBoxQuest.Controls.Add(this.radioButtonGetOrder);
+            this.groupBoxQuest.Controls.Add(this.radioButtonGetInvoice);
+            this.groupBoxQuest.Location = new System.Drawing.Point(12, 3);
+            this.groupBoxQuest.Name = "groupBoxQuest";
+            this.groupBoxQuest.Size = new System.Drawing.Size(273, 36);
+            this.groupBoxQuest.TabIndex = 6;
+            this.groupBoxQuest.TabStop = false;
+            this.groupBoxQuest.Visible = false;
+            this.groupBoxQuest.RegionChanged += new System.EventHandler(this.groupBoxQuest_RegionChanged);
+            // 
+            // radioButtonGetOrder
+            // 
+            this.radioButtonGetOrder.AutoSize = true;
+            this.radioButtonGetOrder.Checked = true;
+            this.radioButtonGetOrder.Location = new System.Drawing.Point(11, 13);
+            this.radioButtonGetOrder.Name = "radioButtonGetOrder";
+            this.radioButtonGetOrder.Size = new System.Drawing.Size(69, 17);
+            this.radioButtonGetOrder.TabIndex = 4;
+            this.radioButtonGetOrder.TabStop = true;
+            this.radioButtonGetOrder.Text = "Get order";
+            this.radioButtonGetOrder.UseVisualStyleBackColor = true;
+            // 
+            // radioButtonGetInvoice
+            // 
+            this.radioButtonGetInvoice.AutoSize = true;
+            this.radioButtonGetInvoice.Location = new System.Drawing.Point(102, 13);
+            this.radioButtonGetInvoice.Name = "radioButtonGetInvoice";
+            this.radioButtonGetInvoice.Size = new System.Drawing.Size(80, 17);
+            this.radioButtonGetInvoice.TabIndex = 5;
+            this.radioButtonGetInvoice.Text = "Get bills pdf";
+            this.radioButtonGetInvoice.UseVisualStyleBackColor = true;
             // 
             // timeListView
             // 
@@ -154,15 +191,17 @@
             // 
             this.panel2.Controls.Add(this.userLabel);
             this.panel2.Controls.Add(this.ordersNumericUpDown);
+            this.panel2.Controls.Add(this.getOrderNumericUpDown);
+            this.panel2.Controls.Add(this.getOrderButton);
             this.panel2.Location = new System.Drawing.Point(12, 37);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(290, 72);
+            this.panel2.Size = new System.Drawing.Size(187, 72);
             this.panel2.TabIndex = 3;
             // 
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(14, 14);
+            this.userLabel.Location = new System.Drawing.Point(18, 44);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(29, 13);
             this.userLabel.TabIndex = 1;
@@ -170,7 +209,7 @@
             // 
             // ordersNumericUpDown
             // 
-            this.ordersNumericUpDown.Location = new System.Drawing.Point(60, 11);
+            this.ordersNumericUpDown.Location = new System.Drawing.Point(84, 42);
             this.ordersNumericUpDown.Maximum = new decimal(new int[] {
             100000,
             0,
@@ -192,14 +231,14 @@
             // 
             // getOrderNumericUpDown
             // 
-            this.getOrderNumericUpDown.Location = new System.Drawing.Point(94, 9);
+            this.getOrderNumericUpDown.Location = new System.Drawing.Point(84, 8);
             this.getOrderNumericUpDown.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.getOrderNumericUpDown.Name = "getOrderNumericUpDown";
-            this.getOrderNumericUpDown.Size = new System.Drawing.Size(59, 20);
+            this.getOrderNumericUpDown.Size = new System.Drawing.Size(69, 20);
             this.getOrderNumericUpDown.TabIndex = 1;
             this.getOrderNumericUpDown.Value = new decimal(new int[] {
             1,
@@ -209,7 +248,7 @@
             // 
             // getOrderButton
             // 
-            this.getOrderButton.Location = new System.Drawing.Point(12, 7);
+            this.getOrderButton.Location = new System.Drawing.Point(3, 8);
             this.getOrderButton.Name = "getOrderButton";
             this.getOrderButton.Size = new System.Drawing.Size(75, 23);
             this.getOrderButton.TabIndex = 0;
@@ -298,7 +337,7 @@
             this.b2bRadioButton.UseVisualStyleBackColor = true;
             this.b2bRadioButton.ClientSizeChanged += new System.EventHandler(this.typeGroupBox_RegionChanged);
             // 
-            // apiTestApp
+            // ApiTestApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -310,9 +349,11 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.workingPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "apiTestApp";
+            this.Name = "ApiTestApp";
             this.Text = "API Tester";
             this.workingPanel.ResumeLayout(false);
+            this.groupBoxQuest.ResumeLayout(false);
+            this.groupBoxQuest.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ordersNumericUpDown)).EndInit();
@@ -349,6 +390,9 @@
         private System.Windows.Forms.Label userLabel;
         private System.Windows.Forms.NumericUpDown ordersNumericUpDown;
         private System.Windows.Forms.ListView timeListView;
+        private System.Windows.Forms.GroupBox groupBoxQuest;
+        private System.Windows.Forms.RadioButton radioButtonGetOrder;
+        private System.Windows.Forms.RadioButton radioButtonGetInvoice;
     }
 }
 

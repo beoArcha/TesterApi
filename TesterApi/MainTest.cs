@@ -15,12 +15,13 @@ namespace TesterApi
         private bool logged;
         private long userId;
         private long choosenService = 0;
+        private long choosenFunction = 0;
         private long ordersUser;
         private long count;
         private string token;
         private string connectionAdress;
         private string cookie;
-        private string[] listOfServices = { "b2b", "space" };
+       
 
         public ApiTestApp()
         {
@@ -56,17 +57,17 @@ namespace TesterApi
         private void testingButton_Click(object sender, EventArgs e)
         {
             bool result;
-            string service = listOfServices[choosenService];
+            Services service = (Services)choosenService;
             string adress = adressBox.Text + ":" + portNumericUpDown.Value.ToString();
             if (loginBox.Text != "" && passBox.Text != "")
             {
                 string authString = loginBox.Text + ":" + passBox.Text;
                 authString = encodeBase64(authString);
-                result = testService(service, adress, authString);
+                result = testService(service.ToString(), adress, authString);
             }
             else
             {
-                result = testService(service, adress);
+                result = testService(ToString(), adress);
             }
             if (result)
                 MessageBox.Show("connection established");
@@ -230,7 +231,10 @@ namespace TesterApi
 
         private void timeListView_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (radioButtonGetOrder.Checked)
+            { }
+            else
+            { }  
         }
         private static string InternetQuestion(HttpWebRequest req)
         {
@@ -241,6 +245,11 @@ namespace TesterApi
             StreamReader reader = new StreamReader(dataStream, Encoding.UTF8);
             // Read the content.
             return reader.ReadToEnd();
+        }
+
+        private void groupBoxQuest_RegionChanged(object sender, EventArgs e)
+        {
+
         }
     }
 
@@ -265,5 +274,15 @@ namespace TesterApi
         public int Idcompany { get; set; }
         public int Idpayer { get; set; }
     }
-  
+
+    public enum Services
+    {
+        b2b = 0,
+        space = 1
+    }
+    public enum b2bFunction
+    {
+        get_orders = 0,
+        get_bills_pdf = 1
+    }
 }
